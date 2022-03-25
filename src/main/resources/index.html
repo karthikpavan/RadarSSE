@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rada Data Emitter</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+
+  .navbar {
+      min-height: 80px;
+  }
+  .navbar-brand {
+      margin: auto;
+      font-size: 2.6rem;
+  }
+  .panel {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  h{
+  color: blue;
+  }
+  h2{
+  color: blue;
+  }
+  h3{
+  color: blue;
+  }
+  h4{
+  color: blue;
+  }
+  h5{
+  color: blue;
+  }
+  h6{
+  color: blue;
+  }
+  .pstyle{
+  font-size: 2rem;
+  font-family: verdana, sans-serif;
+  }
+
+  * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+
+</style>
+
+<script>
+      $(document).ready(function() {
+        var url = 'http://localhost:8080/api/v1/subscribe';
+        var eventSource = new EventSource(url);
+
+        eventSource.addEventListener("radarDataDetails", function(event) {
+              var radarData = JSON.parse(event.data);
+              console.log("Radar Event Data: "+event.data)
+
+        addBlock(radarData.id, radarData.latitude, radarData.longitude, radarData.speed, radarData.heading, radarData.type);
+        })
+      })
+
+function addBlock(id, latitude, longitude, speed, heading, type) {
+ var a = document.createElement("radardata");
+
+ var h = document.createElement("H3");
+ var t = document.createTextNode(id);
+ h.appendChild(t);
+
+ var h2 = document.createElement("H3");
+ var t2 = document.createTextNode(latitude);
+ h2.appendChild(t2);
+
+ var h3 = document.createElement("H3");
+ var t3 = document.createTextNode(longitude);
+ h3.appendChild(t3);
+
+ var h4 = document.createElement("H3");
+ var t4 = document.createTextNode(speed);
+ h4.appendChild(t4);
+
+ var h5 = document.createElement("H3");
+ var t5 = document.createTextNode(heading);
+ h5.appendChild(t5);
+
+ var h6 = document.createElement("H3");
+ var t6 = document.createTextNode(type);
+ h6.appendChild(t6);
+
+ var para = document.createElement("p");
+ para.innerHTML = id, latitude, longitude, speed, heading, type;
+ a.appendChild(h);
+ a.appendChild(h2);
+ a.appendChild(h3);
+ a.appendChild(h4);
+ a.appendChild(h5);
+ a.appendChild(h6);
+ document.getElementById("pack").appendChild(a);
+}
+
+
+</script>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <div class="navbar-brand">Radar Emulator Tracker</div>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+
+  <div class="container pstyle text-center" id="pack">
+    <div class="panel panel-primary">
+      Radar Data Reflector
+    </div>
+  </div>
+</div>
+</body>
+</html>
