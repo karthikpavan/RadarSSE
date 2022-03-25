@@ -4,6 +4,9 @@ Server Sent Events is a standard for transmitting data to the client application
 
 ![image](https://user-images.githubusercontent.com/10458982/160169100-07b8a308-5c9f-4607-a473-6e7b9eadb7f0.png)
 
+http://localhost:8080/api/v1/subscribe : subscribe url registered via EventSource in FE and helped to listed the event change
+http://localhost:8080/api/v1/dispatchEvent : url to dispatch the event.
+
 
 
 Data reflected on client from BE as soon as POST request trigerred from postman
@@ -17,4 +20,7 @@ Post Request from Postman
 Data Stored on MongoDB
 
 ![image](https://user-images.githubusercontent.com/10458982/160168466-6472d264-d107-4489-9188-7f32ce18fafb.png)
+
+
+Note* : all the url's are restricted to localhost
 
