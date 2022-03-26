@@ -28,6 +28,9 @@ Post Request from Postman
 
 Data Stored on MongoDB
 
+MongoDB details: Database Name : RadartrackSSE 
+                 Collection Name : RadartrackSSE
+
 ![image](https://user-images.githubusercontent.com/10458982/160168466-6472d264-d107-4489-9188-7f32ce18fafb.png)
 
 
